@@ -1074,22 +1074,21 @@ task.spawn(function()
                     end)
                 end)
 
-                task.spawn(function()
-                    local loaded = LoadGame()
-                    if loaded then
-                        task.defer(function()
-                            if not gui or not gui.Parent then return end
-                            ShowClock()
-                            task.delay(0.7, function()
-                                if gui and gui.Parent then
-                                    cleanupTweens()
-                                    gui:Destroy()
-                                end
-                            end)
+                local loaded = LoadGame()
+                if loaded then
+                    task.defer(function()
+                        if not gui or not gui.Parent then return end
+                        ShowClock()
+                        task.delay(0.7, function()
+                            if gui and gui.Parent then
+                                cleanupTweens()
+                                gui:Destroy()
+                            end
                         end)
-                    end
-                end)
-                return
+                    end)
+                    return
+                end
+                -- load failed: fall through and show the key UI
             end
         end
     end
