@@ -1052,13 +1052,13 @@ end)
 
 -- INTRO
 task.spawn(function()
-    task.wait(0.3)
+    task.wait(0.05)
 
     local saved = LoadKey()
 
     if saved and saved.key and saved.key ~= "" then
         local waited = 0
-        while not PUSLReady and PUSLState ~= "failed" and waited < 6 do
+        while not PUSLReady and PUSLState ~= "failed" and waited < 3 do
             task.wait(0.2)
             waited += 0.2
         end
@@ -1112,14 +1112,14 @@ task.spawn(function()
     credit.Visible = false
     sweepLine.Visible = false
 
-    task.wait(0.15)
+    task.wait(0.05)
 
-    tw(winScale, 0.9, { Scale = BASE_SCALE },
+    tw(winScale, 0.5, { Scale = BASE_SCALE },
         Enum.EasingStyle.Back, Enum.EasingDirection.Out)
     tw(frameImg, 0.5, { ImageTransparency = 0 })
     tw(frameGlow, 0.8, { ImageTransparency = 0.85 })
 
-    task.wait(0.55)
+    task.wait(0.3)
 
     sfx("rbxassetid://4612375230", 0.3)
 
@@ -1148,7 +1148,7 @@ task.spawn(function()
         if ring and ring.Parent then ring:Destroy() end
     end)
 
-    task.wait(0.25)
+    task.wait(0.1)
 
     local function popIn(element, delayTime)
         task.delay(delayTime, function()
@@ -1163,15 +1163,15 @@ task.spawn(function()
     end
 
     popIn(inputBox, 0)
-    popIn(pasteBtn, 0.08)
-    popIn(status, 0.16)
-    popIn(b1, 0.24)
-    popIn(b2, 0.32)
-    popIn(b3, 0.40)
-    popIn(version, 0.48)
-    popIn(credit, 0.48)
+    popIn(pasteBtn, 0.04)
+    popIn(status, 0.08)
+    popIn(b1, 0.12)
+    popIn(b2, 0.16)
+    popIn(b3, 0.20)
+    popIn(version, 0.24)
+    popIn(credit, 0.24)
 
-    task.wait(0.6)
+    task.wait(0.3)
 
     sweepLine.Visible = true
     sweepLine.BackgroundTransparency = 0
@@ -1204,7 +1204,7 @@ task.spawn(function()
         end)
     end
 
-    task.wait(1)
+    task.wait(0.3)
 
     task.spawn(function()
         while sweepLine and sweepLine.Parent do
