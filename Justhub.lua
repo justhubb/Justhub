@@ -276,7 +276,7 @@ local function LoadGame()
     _G.JustHubAuth = true  -- tell the loader the key was validated
 
     local src = httpGet(LOADER_URL)
-    if not src or not isValidLua(src) then
+    if not src or #src < 30 or src:sub(1, 1) == "<" then
         return false, "HTTP_FAIL"
     end
 
