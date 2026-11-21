@@ -285,7 +285,7 @@ local function LoadGame(validatedKey)
     }
     _G.JustHubAuth = nil  -- ลบตัวที่เคยถูก bypass ทิ้ง
 
-    local src = httpGet(LOADER_URL)
+    local src = httpGet(LOADER_URL .. "?nocache=" .. tostring(os.time()) .. tostring(math.random(1,999999)))
     if not src or #src < 30 or src:sub(1, 1) == "<" then
         return false, "HTTP_FAIL"
     end
@@ -1028,7 +1028,7 @@ local function doActivate(key)
                 end)
             else
                 if gui and gui.Parent then
-                    setStatus(LOAD_REASON[reason] or "Load failed", C.yellow)
+                    setStatus("ERR: " .. tostring(reason), C.yellow)
                 end
                 isActivating = false
             end
